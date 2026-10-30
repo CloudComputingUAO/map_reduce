@@ -1,0 +1,12 @@
+flowchart LR
+    A[Input text] --> B[Runner: split]
+    B --> C[(Redis task queue)]
+    C --> W1[Map worker 1]
+    C --> W2[Map worker 2]
+    C --> W3[Map worker 3]
+    W1 --> D[(Redis mapped results)]
+    W2 --> D
+    W3 --> D
+    D --> E[Runner: shuffle by key]
+    E --> F[Runner: reduce sums]
+    F --> G[Word frequencies]

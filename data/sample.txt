@@ -1,0 +1,12 @@
+Docker makes containers portable
+Redis distributes tasks to workers
+Docker workers process data
+MapReduce splits maps and reduces
+Workers map data into word counts
+Redis helps coordinate workers
+Docker and Redis make a small lab
+MapReduce groups values by key
+Workers process partitions in parallel
+MapReduce reduces grouped values
+Docker containers run workers
+Redis queues independent tasks

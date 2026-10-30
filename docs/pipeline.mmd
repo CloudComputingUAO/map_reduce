@@ -1,0 +1,5 @@
+flowchart LR
+    A["docker redis docker"] --> B["Split"]
+    B --> C["Map: docker 1, redis 1, docker 1"]
+    C --> D["Shuffle: docker [1,1], redis [1]"]
+    D --> E["Reduce: docker 2, redis 1"]

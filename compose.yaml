@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+  worker:
+    build: .
+    command: python -u app/worker.py
+    environment:
+      REDIS_HOST: redis
+    depends_on:
+      redis:
+        condition: service_healthy
+  runner:
+    build: .
+    command: python -u app/runner.py
+    environment:
+      REDIS_HOST: redis
+    volumes:
+      - ./data:/workspace/data:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    profiles: [tools]
